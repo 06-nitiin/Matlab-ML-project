@@ -37,11 +37,11 @@ To run this project, you will need:
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/your-username/matlab-ml-iris-classification.git
-    cd matlab-ml-iris-classification
+    git clone https://github.com/06-nitiin/Matlab-ML-project.git
+    cd Matlab-ML-project
     ```
 2.  **Open MATLAB:** Launch your MATLAB application.
-3.  **Navigate to the project directory:** In MATLAB, use the "Current Folder" browser to navigate to the `matlab-ml-iris-classification` directory where you cloned the repository.
+3.  **Navigate to the project directory:** In MATLAB, use the "Current Folder" browser to navigate to the `Matlab-ML-project` directory where you cloned the repository.
 
 ### Running the Project
 
@@ -53,7 +53,7 @@ The script will execute, and you will see output in the Command Window regarding
 ## Project Structure
 
 ```
-matlab-ml-iris-classification/
+Matlab-ML-project/
 ├── main.m                % Main script to run the classification and analysis
 └── README.md             % Project description and instructions
 ```
