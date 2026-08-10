@@ -28,7 +28,7 @@ acc_DT = sum(strcmp(YPred_DT, YTest)) / numel(YTest);
 fprintf('Training SVM Model..\n');
 t = templateSVM('Standardize', true, 'KernelFunction', 'gaussian');
 Mdl_SVM = fitcecoc(XTrain, YTrain, 'Learners', t);
-YPred_SVM = predict(Mdl_SVM, XTest);
+[YPred_SVM, scores_SVM] = predict(Mdl_SVM, XTest); % Fixed: predict
 acc_SVM = sum(strcmp(YPred_SVM, YTest)) / numel(YTest); % Fixed: YTest
 
 %  kNN (k-Nearest Neighbors) 
@@ -42,12 +42,12 @@ fprintf('Models trained: Decision Tree (%.1f%%), SVM (%.1f%%), kNN (%.1f%%)\n', 
 
 % Neural Network (Finding complex patterns)
 fprintf('Training Neural Network Model\n');
-[~, YTrain_num] = grp2idx(YTrain);
-[~, YTest_num] = grp2idx(YTest);
+[YTrain_num, speciesNames] = grp2idx(YTrain);
+YTest_num = grp2idx(YTest);
 
 Mdl_NN = fitcnet(XTrain, YTrain_num, 'LayerSizes', [10, 5], 'Standardize', true);
 YPred_NN_num = predict(Mdl_NN, XTest);
-YPred_NN = Mdl_NN.ClassNames(YPred_NN_num);
+YPred_NN = speciesNames(YPred_NN_num);
 acc_NN = sum(strcmp(YPred_NN, YTest)) / numel(YTest);
 
 fprintf('Neural Network Trained. Accuracy: %.1f%%\n', acc_NN*100);
@@ -71,9 +71,8 @@ title('Confusion Matrix: SVM Model');
 
 % ROC Curve for the best model
 figure;
-rocObj = rocmetrics(YTest, scores(Mdl_SVM, XTest), Mdl_SVM.ClassNames);
+rocObj = rocmetrics(YTest, scores_SVM, Mdl_SVM.ClassNames);
 plot(rocObj);
 title('ROC Curve: SVM Performance');
 
 fprintf('\nAll visualizations generated. Project complete\n');
-
