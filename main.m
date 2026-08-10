@@ -39,3 +39,17 @@ acc_kNN = sum(strcmp(YPred_kNN, YTest)) / numel(YTest); % Fixed: / instead of .
 
 fprintf('Models trained: Decision Tree (%.1f%%), SVM (%.1f%%), kNN (%.1f%%)\n', ...
     acc_DT*100, acc_SVM*100, acc_kNN*100);
+
+
+& Neural Network (Finding complex patterns)
+fprintf('Training Neural Network Model\n');
+[~, YTrain_num] = grp2idx(YTrain);
+[~, YTest_num] = grp2idx(YTest);
+
+Mdl_NN = fitcnet(Xtrain, YTrain_num, 'LayerSizes', [10, 5], 'Standardize', true);
+YPred_NN_num = predict(Mdl_NN, XTest);
+YPRed_NN = Mdl_NN.ClassNames(YPred_NN_num);
+acc_N = sum(strcmp(YPred_NN, YTest)) / numel(YTest);
+
+fprintf('Neural Network Trained. Accuracy: %.1f%%\n', acc_NN*100);
+
