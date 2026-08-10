@@ -69,13 +69,13 @@ Upon running `main.m`, you will observe:
 ## Results & Visualizations
 
 ### Model Accuracy Comparison
-![Accuracy Chart](model_accuracy.png)
+![Accuracy Chart](Model_Accuracy.png)
 
 ### Confusion Matrix (SVM)
-![Confusion Matrix](confusion_matrix.png)
+![Confusion Matrix](Confusion_Matrix.png)
 
 ### ROC Curve
-![ROC Curve](roc_curve.png)
+![ROC Curve](ROC_Curve.png)
 
 
 ## Contributing
