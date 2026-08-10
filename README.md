@@ -66,6 +66,18 @@ Upon running `main.m`, you will observe:
 *   Individual confusion matrix plots for Decision Tree, SVM, kNN, and Neural Network.
 *   ROC curves for each model, illustrating their performance across different classification thresholds.
 
+## Results & Visualizations
+
+### Model Accuracy Comparison
+![Accuracy Chart](model_accuracy.png)
+
+### Confusion Matrix (SVM)
+![Confusion Matrix](confusion_matrix.png)
+
+### ROC Curve
+![ROC Curve](roc_curve.png)
+
+
 ## Contributing
 
 Feel free to fork this repository, make improvements, and submit pull requests. Any suggestions or enhancements are welcome!
