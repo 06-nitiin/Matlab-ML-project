@@ -57,7 +57,7 @@ fprintf('Neural Network Trained. Accuracy: %.1f%%\n', acc_NN*100);
 % Randome Forest (Ensemble Learning)
 % Close to 50 trees whichj would hence result in better stability and accuracy.
 fprintf('Training Random Forest Model\n');
-Mdl_RF = fitcensemble(XTRain, YTrain, 'Method', 'Bag', 'NumLearningCycles', 50);
+Mdl_RF = fitcensemble(XTrain, YTrain, 'Method', 'Bag', 'NumLearningCycles', 50);
 YPred_RF = predict(Mdl_RF, XTest);
 acc_RF = sum(strcmp(YPred_RF, YTest)) / numel(YTest);
 
