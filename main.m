@@ -87,3 +87,18 @@ plot(rocObj);
 title('ROC Curve: SVM Performance');
 
 fprintf('\nAll visualizations generated. Project complete\n');
+
+
+% Interactive Prediction (testing the model with own measurements)
+fprintf('\n Customer Flower Prediction'\n);
+myFlower =  [5.1, 3.5, 1.4, 0.2]; 
+
+% Calculating the petal area for the custom flower;
+myFlowerArea = myFlower(3) * myFlower(4);
+myFlowerFull = [myFlower, myFlowerArea];
+
+% Using the best model to predit
+predictedSpecies = predict(Mdl_SVM, myFlowerFull);
+fprintf('Input Measurements: SL=%.1f, SW=%.1f, PL=%.1f, PW=%.1f\n', myFlower);
+fprintf('The AI predicts this flower is: %s/n', char(predictedSpecies));
+
