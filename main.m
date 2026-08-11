@@ -17,7 +17,7 @@ YTrain = Y(idxTrain, :);
 XTest = X(idxTest, :);
 YTest = Y(idxTest, :);
 
-fprintf('Data loaded and split into training (70%%) and testing (30%%) sets.\n');
+fprintf('Data loaded with FEATURE ENGINEERING (Petal Area added).\n');
 
 %  Decision Tree 
 fprintf('Training Decision Tree Model..\n');
@@ -54,12 +54,21 @@ acc_NN = sum(strcmp(YPred_NN, YTest)) / numel(YTest);
 
 fprintf('Neural Network Trained. Accuracy: %.1f%%\n', acc_NN*100);
 
+% Randome Forest (Ensemble Learning)
+% Close to 50 trees whichj would hence result in better stability and accuracy.
+fprintf('Training Random Forest Model\n');
+Mdl_RF = fitcensemble(XTRain, YTrain, 'Method', 'Bag', 'NumLearningCycles', 50);
+YPred_RF = predict(Mdl_RF, XTest);
+acc_RF = sum(strcmp(YPred_RF, YTest)) / numel(YTest);
+
+fprintf('Random forest Trained. Accuracy: %.1f%%\n', acc_RF*100);
+
 %  Visualizations
 
 %  Accuracy Comparison Bar Chart 
 figure;
-modelNames = {'Decision Tree', 'SVM', 'kNN', 'Neural Network'};
-accuracies = [acc_DT, acc_SVM, acc_kNN, acc_NN];
+modelNames = {'Decision Tree', 'SVM', 'kNN', 'Neural Network', 'Random Forest'};
+accuracies = [acc_DT, acc_SVM, acc_kNN, acc_NN, acc_RF];
 bar(accuracies * 100);
 set(gca, 'xticklabel', modelNames);
 title('Model Accuracy Comparison');
