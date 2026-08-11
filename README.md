@@ -10,6 +10,7 @@ The project trains and evaluates the following classification algorithms:
 *   **Support Vector Machine (SVM)**
 *   **k-Nearest Neighbors (kNN)**
 *   **Neural Network**
+*   **Interactive Prediction**
 
 ## Evaluation Metrics & Visualizations
 
@@ -56,14 +57,17 @@ The script will execute, and you will see output in the Command Window regarding
 Matlab-ML-project/
 ├── main.m                % Main script to run the classification and analysis
 └── README.md             % Project description and instructions
+└── Graph of ROC Curve
+└── Graph of Confusion Matrix
+└── Graph of Model Accuracy
 ```
 
 ## Results
 
 Upon running `main.m`, you will observe:
 
-*   A bar chart comparing the accuracy of all four models.
-*   Individual confusion matrix plots for Decision Tree, SVM, kNN, and Neural Network.
+*   A bar chart comparing the accuracy of all five models.
+*   Individual confusion matrix plots for Decision Tree, SVM, kNN, Neural Network and Interactive Prediction.
 *   ROC curves for each model, illustrating their performance across different classification thresholds.
 
 ## Results & Visualizations
@@ -79,13 +83,10 @@ Upon running `main.m`, you will observe:
 
 
 ## Contributing
-
 Feel free to fork this repository, make improvements, and submit pull requests. Any suggestions or enhancements are welcome!
 
 ## License
-
 This project is open-source and available under the MIT License.
 
 ## Contact
-
 For any questions or feedback, please open an issue in this repository.
