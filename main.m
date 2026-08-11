@@ -3,7 +3,9 @@
 % Loading the built-in Iris Dataset
 load fisheriris;
 
-X = meas;  % Features (sepal length, width and petal length, width)
+% Feature Engineering (Want to give AI more information to work around with)
+petalArea = meas(:, 3) .* meas(:, 4); % Petal Area
+X = [meas, petalArea];
 Y = species;  % Target labels
 
 c = cvpartition(Y, 'Holdout', 0.3);   % Splitting the dataset (Training and Testing)
