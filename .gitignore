@@ -1,1 +1,13 @@
+# MATLAB autosave and backup files
+*.asv
+*.m~
+*.autosave
+
+# Generated project outputs
+results/*.png
+results/*.csv
+
+# OS/editor files
 .DS_Store
+.vscode/
+.idea/

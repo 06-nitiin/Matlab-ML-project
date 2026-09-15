@@ -1,92 +1,80 @@
-# MATLAB Machine Learning Mini Project: Iris Flower Classification
+# MATLAB Machine Learning Project: Iris Classification
 
-This repository contains a MATLAB project that demonstrates the implementation and comparison of various machine learning classification models on the classic Iris flower dataset. The project aims to provide a clear, beginner-friendly example for those new to machine learning in MATLAB, suitable for inclusion in a GitHub portfolio.
+This project compares several supervised machine-learning algorithms on MATLAB's built-in Fisher Iris dataset. It is designed as a reproducible, beginner-friendly portfolio project and demonstrates feature engineering, stratified cross-validation, classification metrics, visual evaluation, and interactive prediction.
 
-## Models Implemented
+## Models
 
-The project trains and evaluates the following classification algorithms:
+The project evaluates the following classifiers:
 
-*   **Decision Tree**
-*   **Support Vector Machine (SVM)**
-*   **k-Nearest Neighbors (kNN)**
-*   **Neural Network**
-*   **Interactive Prediction**
+- Decision Tree
+- Gaussian-kernel Support Vector Machine using ECOC for multiclass classification
+- k-Nearest Neighbors
+- Random Forest-style bagged ensemble
+- Neural Network, when `fitcnet` is available in the installed MATLAB version
 
-## Evaluation Metrics & Visualizations
+The engineered feature set contains sepal length, sepal width, petal length, petal width, and petal area.
 
-For each model, the following are calculated and visualized:
+## Requirements
 
-*   **Accuracy**: The proportion of correctly classified instances.
-*   **Confusion Matrix**: A table that describes the performance of a classification model on a set of test data for which the true values are known.
-*   **Receiver Operating Characteristic (ROC) Curve**: A plot that illustrates the diagnostic ability of a binary classifier system as its discrimination threshold is varied. For multiclass problems, it's typically plotted for each class against the rest.
+- MATLAB R2018b or newer
+- Statistics and Machine Learning Toolbox
+- Deep Learning Toolbox is optional. The neural-network model is skipped automatically when `fitcnet` is unavailable.
+- A graphics-capable MATLAB session for plots
 
-## Dataset
+## Running the project
 
-The project uses the built-in `fisheriris` dataset in MATLAB, which contains measurements for 150 iris flowers from three different species: *Iris setosa*, *Iris versicolor*, and *Iris virginica*. Each species has 50 samples, with four features measured from each sample: the length and the width of the sepals and petals.
+1. Clone or download the repository.
+2. Open MATLAB and set the project directory as the Current Folder.
+3. Run:
 
-## Getting Started
-
-### Prerequisites
-
-To run this project, you will need:
-
-*   MATLAB (R2018b or newer is recommended)
-*   Statistics and Machine Learning Toolbox
-*   Deep Learning Toolbox (for Neural Network functionality)
-
-### Installation
-
-1.  **Clone the repository:**
-    ```bash
-    git clone https://github.com/06-nitiin/Matlab-ML-project.git
-    cd Matlab-ML-project
-    ```
-2.  **Open MATLAB:** Launch your MATLAB application.
-3.  **Navigate to the project directory:** In MATLAB, use the "Current Folder" browser to navigate to the `Matlab-ML-project` directory where you cloned the repository.
-
-### Running the Project
-
-1.  **Open `main.m`:** Double-click on `main.m` in the MATLAB Current Folder browser to open it in the editor.
-2.  **Run the script:** Click the "Run" button in the MATLAB editor, or type `main` in the MATLAB Command Window and press Enter.
-
-The script will execute, and you will see output in the Command Window regarding the training process and accuracies. Several figures will be generated, displaying the accuracy bar chart, confusion matrices for each model, and ROC curves.
-
-## Project Structure
-
+```matlab
+main
 ```
+
+The script uses a fixed random seed (`42`) and five stratified folds so that the model comparison can be reproduced. At the end, it asks for four Iris measurements. Press Enter at each prompt to use the included example values.
+
+## Project structure
+
+```text
 Matlab-ML-project/
-├── main.m                % Main script to run the classification and analysis
-└── README.md             % Project description and instructions
-└── Graph of ROC Curve
-└── Graph of Confusion Matrix
-└── Graph of Model Accuracy
+├── main.m
+├── functions/
+│   ├── interactivePrediction.m
+│   ├── loadIrisData.m
+│   ├── plotConfusionMatrices.m
+│   ├── plotModelComparison.m
+│   ├── plotMulticlassROC.m
+│   ├── runCrossValidation.m
+│   └── trainFinalModels.m
+├── results/
+│   └── Generated figures and metrics are saved here
+├── .gitignore
+└── README.md
 ```
 
-## Results
+## Evaluation outputs
 
-Upon running `main.m`, you will observe:
+Running `main.m` creates a `results` directory containing:
 
-*   A bar chart comparing the accuracy of all five models.
-*   Individual confusion matrix plots for Decision Tree, SVM, kNN, Neural Network and Interactive Prediction.
-*   ROC curves for each model, illustrating their performance across different classification thresholds.
+- `metrics.csv`: mean and standard deviation of accuracy and macro-F1 across folds.
+- `model_comparison.png`: comparison of accuracy and macro-F1.
+- One normalized confusion-matrix image for each model.
+- `multiclass_roc_curves.png`: one-vs-rest ROC curves with AUC values.
 
-## Results & Visualizations
+Accuracy measures the proportion of correct predictions. Macro-F1 calculates F1 independently for each class and then gives every class equal weight, which is useful even when class sizes differ.
 
-### Model Accuracy Comparison
-![Accuracy Chart](Model_Accuracy.png)
+## Notes on reproducibility
 
-### Confusion Matrix (SVM)
-![Confusion Matrix](Confusion_Matrix.png)
+The Iris dataset is loaded using MATLAB's built-in `fisheriris` dataset. The script sets the random-number generator with `rng(42, 'twister')`, uses the same stratified folds for every model, and trains final models on the complete dataset only after cross-validation is complete.
 
-### ROC Curve
-![ROC Curve](ROC_Curve.png)
+## Limitations and possible extensions
 
+This project uses a small, clean dataset, so its results should not be interpreted as representative of real-world production performance. Useful future contributions include hyperparameter tuning, repeated cross-validation, feature-distribution plots, model persistence, unit tests, and a MATLAB App Designer interface.
 
 ## Contributing
-Feel free to fork this repository, make improvements, and submit pull requests. Any suggestions or enhancements are welcome!
+
+Fork the repository, create a feature branch, make focused changes, and open a pull request. Please describe the MATLAB version and toolboxes used when reporting an issue or submitting a contribution.
 
 ## License
-This project is open-source and available under the MIT License.
 
-## Contact
-For any questions or feedback, please open an issue in this repository.
+This project is released under the MIT License. Add a `LICENSE` file containing the standard MIT License text if one is not already present in your repository.
